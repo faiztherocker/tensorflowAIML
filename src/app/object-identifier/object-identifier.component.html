@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <img
+        class="card-img-top img-fluid img-thumbnail rounded"
+        alt="The image selected for Object identifier image"
+        [src]="imageUploadForm.get('image').value"
+        #objectIdentifierImage
+      />
+      <div class="card-body">
+        <h5 class="card-title">Upload the image to identify object</h5>
+        <form [formGroup]="imageUploadForm">
+          <div class="form-group">
+            <label for="objectIdentifierImage"></label>
+            <input
+              type="file"
+              class="form-control-file"
+              id="objectIdentifierImage"
+              (change)="imageChanged($event)"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6" *ngIf="identifiedObjects.length > 0">
+    <h5>Objects Identified in the image</h5>
+    <div
+      class="alert alert-primary"
+      role="alert"
+      *ngFor="
+        let identifiedObject of identifiedObjects;
+        trackBy: trackIdentfiedObjects
+      "
+    >
+      <p>
+        The probability of image having a
+        <b> {{ identifiedObject.className }} </b> is
+        <b> {{ identifiedObject.probability * 100 }}</b>
+      </p>
+    </div>
+  </div>
+</div>
