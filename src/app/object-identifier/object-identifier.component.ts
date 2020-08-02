@@ -55,7 +55,6 @@ export class ObjectIdentifierComponent implements OnInit {
           .predictObjects(this.objectIdentifierImage.nativeElement)
           .then((identifiedObjects: MobileNetInference[]) => {
             this.loaderService.stop();
-            debugger;
             this.identifiedObjects = [...identifiedObjects];
           })
           .catch(error => {
